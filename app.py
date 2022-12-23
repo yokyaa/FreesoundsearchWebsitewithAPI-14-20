@@ -10,21 +10,10 @@ url = f"https://freesound.org/apiv2/search/text/?query={search_input}&token={API
 response = requests.get(url)
 response.raise_for_status()
 data=response.json()
-nums=int(input("How many sound example you want to see? :"))
-if nums > len(data["results"]):
-    nums = len(data["results"])
-    for result in range(nums):
-        sound_id = data["results"][result]["id"]
-        sound_username = data["results"][result]["username"]
-        sound_url = f"https://freesound.org/people/{sound_username}/sounds/{sound_id}/"
-        print(f"Music URL : {sound_url}")
-        dl_url = f"https://freesound.org/apiv2/sounds/{sound_id}/download/"
-        print(f"Download URL: {url}")
-else:
-    for result in range(nums):
-        sound_id = data["results"][result]["id"]
-        sound_username = data["results"][result]["username"]
-        sound_url = f"https://freesound.org/people/{sound_username}/sounds/{sound_id}/"
-        print(f"Music URL : {sound_url}")
-        dl_url = f"https://freesound.org/apiv2/sounds/{sound_id}/download/"
-        print(f"Download URL: {url}")
+for result in range(len(data["results"])):
+    sound_id = data["results"][result]["id"]
+    sound_username = data["results"][result]["username"]
+    sound_url = f"https://freesound.org/people/{sound_username}/sounds/{sound_id}/"
+    print(f"Music URL : {sound_url}")
+    dl_url = f"https://freesound.org/apiv2/sounds/{sound_id}/download/"
+    print(f"Download URL: {url}")

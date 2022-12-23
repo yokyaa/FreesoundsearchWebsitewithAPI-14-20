@@ -31,9 +31,9 @@ def search():
         save = requests.get(download_url)
         print(save.status_code)
         if save.status_code == 200:
-            with open('/static/sounds/sound1.mp3', 'wb') as f:
+            with open(f'/static/sounds/{result["name"]}.mp3', 'wb') as f:
                 f.write(response.content)
-            return send_from_directory('/static/sounds', 'sound1.mp3', mimetype='audio/mpeg')
+        return send_from_directory('/static/sounds', f'{result["name"]}', mimetype='audio/mpeg')
 
     return render_template('index.html', results=results)
 
