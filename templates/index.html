@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <head>
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+</head>
+</head>
+<body>
+<form action="/search" method="post">
+  <label for="query">Search:</label><br>
+  <input type="text" id="query" name="query"><br>
+  <input type="submit" value="Submit">
+</form>
+<ul>
+  {% for result in results %}
+    <li>
+      <a href="{{ result['url'] }}">{{ result['name'] }}</a>
+      <a href="{{ result['download_url'] }}">Download</a>
+       <audio controls src="/search"></audio>
+
+    </li>
+  {% endfor %}
+</ul>
+</body>
+</html>
